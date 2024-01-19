@@ -1,0 +1,17 @@
+body {
+  background-color: #242424;
+  color: #eee;
+  font-family: baskerville;
+}
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+th {
+  text-align: left;
+  padding: 1em 1em 1em 0;
+}
+td {
+  padding: 0.5em 1em 0.5em 0;
+}
