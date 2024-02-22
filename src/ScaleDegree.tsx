@@ -1,14 +1,20 @@
+import styled from "styled-components";
 import Chord from "./Chord";
 import NoteElement from "./NoteElement";
 import type { Note } from "./theory";
 
 import { scaleDegrees } from "./theory";
 
-// Need:
-// Mode - done
-// Triad with name - done
-// available extensions
-// note component -done
+const DegreeRow = styled.tr<{ $degree: number }>`
+  color: color-mix(in srgb, #e1560c ${(props) => props.$degree * 10}%, #474747);
+  & .note {
+    border-color: color-mix(
+      in srgb,
+      #e1560c ${(props) => props.$degree * 10}%,
+      #474747
+    );
+  }
+`;
 
 export default function ScaleDegree({
   note,
@@ -20,7 +26,7 @@ export default function ScaleDegree({
   currentScale: Note[];
 }) {
   return (
-    <tr>
+    <DegreeRow $degree={degree}>
       <td>
         <NoteElement note={note} />
       </td>
@@ -29,6 +35,6 @@ export default function ScaleDegree({
       <td>
         <Chord degree={degree} scale={currentScale} numberOfNotes={4} />
       </td>
-    </tr>
+    </DegreeRow>
   );
 }

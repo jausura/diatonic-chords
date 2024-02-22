@@ -17,7 +17,7 @@ export default function Chord({
     numberOfTones: number
   ) {
     const chord = [scale[degree]];
-    let toneIndex = 0;
+    let toneIndex = degree;
     for (let index = 0; index < numberOfTones - 1; index++) {
       toneIndex += 2;
       chord.push(getLoopedArrayItem(scale, toneIndex));
@@ -28,7 +28,7 @@ export default function Chord({
   return (
     <>
       {getChordFromScaleDegree(degree, scale, numberOfNotes).map((note) => (
-        <NoteElement note={note} />
+        <NoteElement key={degree + note} note={note} />
       ))}
     </>
   );
