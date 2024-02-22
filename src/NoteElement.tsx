@@ -9,6 +9,7 @@ const NoteContainer = styled.span`
   padding: 0.75rem 0.5rem;
   width: 2em;
   text-align: center;
+  line-height: 1.5em;
 `;
 
 export default function NoteElement({ note }: { note: Note }) {

@@ -10,9 +10,34 @@ export type Note =
   | "g♯"
   | "a"
   | "a♯"
-  | "b";
+  | "b"
+  | "d♭"
+  | "e♭"
+  | "g♭"
+  | "a♭"
+  | "b♭";
 
-export const notes: Note[] = [
+export const allNotes: Note[] = [
+  "c",
+  "c♯",
+  "d",
+  "d♯",
+  "e",
+  "f",
+  "f♯",
+  "g",
+  "g♯",
+  "a",
+  "a♯",
+  "b",
+  "d♭",
+  "e♭",
+  "g♭",
+  "a♭",
+  "b♭",
+];
+
+const notesInSharpScale: Note[] = [
   "c",
   "c♯",
   "d",
@@ -27,7 +52,7 @@ export const notes: Note[] = [
   "b",
 ];
 
-export const flats = [
+const notesInFlatScale: Note[] = [
   "c",
   "d♭",
   "d",
@@ -43,18 +68,19 @@ export const flats = [
 ];
 
 type ScaleDegree = {
+  number: string;
   name: string;
   seventhChordType: "major" | "minor" | "half diminished" | "dominant";
 };
 
 export const scaleDegrees: ScaleDegree[] = [
-  { name: "Ionian", seventhChordType: "major" },
-  { name: "Dorian", seventhChordType: "minor" },
-  { name: "Phrygian", seventhChordType: "minor" },
-  { name: "Lydian", seventhChordType: "major" },
-  { name: "Mixolydian", seventhChordType: "dominant" },
-  { name: "Aeolian", seventhChordType: "minor" },
-  { name: "Locrian", seventhChordType: "half diminished" },
+  { number: "I", name: "Ionian", seventhChordType: "major" },
+  { number: "II", name: "Dorian", seventhChordType: "minor" },
+  { number: "III", name: "Phrygian", seventhChordType: "minor" },
+  { number: "IV", name: "Lydian", seventhChordType: "major" },
+  { number: "V", name: "Mixolydian", seventhChordType: "dominant" },
+  { number: "VI", name: "Aeolian", seventhChordType: "minor" },
+  { number: "VII", name: "Locrian", seventhChordType: "half diminished" },
 ];
 
 type Scale = {
@@ -79,6 +105,11 @@ export const scales: Scales = {
 
 export function getScale(root: Note, scale: Scale): Note[] {
   const { semitones } = scale;
+  let notes = notesInSharpScale;
+  if (root === "f" || root[1] === "♭") {
+    notes = notesInFlatScale;
+  }
+
   const rootIndex = notes.indexOf(root);
   const thisScale = [root];
   thisScale.push(

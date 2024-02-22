@@ -5,12 +5,12 @@ import type { Note } from "./theory";
 
 import { scaleDegrees } from "./theory";
 
-const DegreeRow = styled.tr<{ $degree: number }>`
-  color: color-mix(in srgb, #e1560c ${(props) => props.$degree * 10}%, #474747);
+const DegreeRow = styled.tr<{ degree: number }>`
+  color: color-mix(in srgb, #e1560c ${(props) => props.degree * 10}%, #474747);
   & .note {
     border-color: color-mix(
       in srgb,
-      #e1560c ${(props) => props.$degree * 10}%,
+      #e1560c ${(props) => props.degree * 10}%,
       #474747
     );
   }
@@ -26,7 +26,8 @@ export default function ScaleDegree({
   currentScale: Note[];
 }) {
   return (
-    <DegreeRow $degree={degree}>
+    <DegreeRow degree={degree}>
+      <td>{scaleDegrees[degree].number}</td>
       <td>
         <NoteElement note={note} />
       </td>
